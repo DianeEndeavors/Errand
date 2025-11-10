@@ -26,6 +26,7 @@ function ExampleCard({ icon, title, description, action, color, delay }) {
   }, [delay]);
 
   const colorClasses = {
+    brand: 'from-purple-700 to-yellow-400',
     blue: 'from-blue-500 to-blue-600',
     green: 'from-green-500 to-green-600',
     purple: 'from-purple-500 to-purple-600',
@@ -516,7 +517,7 @@ export default function ErrandServiceApp() {
               <p className="text-xl text-slate-600">Scroll to see how we can help</p>
             </div>
             <div className="space-y-12">
-              <ExampleCard icon="🪧" title="Put Out & Retrieve Signage" description="Get your For Sale signs in the ground or your open house directional signs out before showings? We'll handle placing and retrieving them." action="We'll get them up." color="red" delay={0} />
+              <ExampleCard icon="🪧" title="Put Out & Retrieve Signage" description="Get your For Sale signs in the ground or your open house directional signs out before showings? We'll handle placing and retrieving them." action="We'll get them up." color="brand" delay={0} />
               <ExampleCard icon="🏠" title="Lights Left On?" description="Buyer's agent left the lights on and your sellers want you to turn them off?" action="We can help." color="blue" delay={200} />
               <ExampleCard icon="🔑" title="Lockbox Check" description="Need someone to verify the lockbox code is working before your showing?" action="We've got it." color="green" delay={400} />
               <ExampleCard icon="🎨" title="Last-Minute Staging Touch" description="Need some last-minute decorations to complete a room before your showing?" action="Consider it done." color="purple" delay={600} />
