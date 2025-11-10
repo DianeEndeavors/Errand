@@ -498,14 +498,15 @@ export default function ErrandServiceApp() {
               <p className="text-xl text-slate-600">Scroll to see how we can help</p>
             </div>
             <div className="space-y-12">
-              <ExampleCard icon="🏠" title="Lights Left On?" description="Buyer's agent left the lights on and your sellers want you to turn them off?" action="We can help." color="blue" delay={0} />
-              <ExampleCard icon="🔑" title="Lockbox Check" description="Need someone to verify the lockbox code is working before your showing?" action="We've got it." color="green" delay={200} />
-              <ExampleCard icon="🎨" title="Last-Minute Staging Touch" description="Need some last-minute decorations to complete a room before your showing?" action="Consider it done." color="purple" delay={400} />
-              <ExampleCard icon="💧" title="Property Check" description="Worried about a potential leak after a storm?" action="We're on it." color="cyan" delay={600} />
-              <ExampleCard icon="🎈" title="Last-Minute Supplies" description="Need balloons picked up for an open house that starts in two hours?" action="We can run out." color="pink" delay={800} />
-              <ExampleCard icon="📋" title="Document Delivery" description="Need documents from your office to the title company before they close?" action="We'll rush it over." color="orange" delay={1000} />
-              <ExampleCard icon="🔑" title="Key Exchange" description="Need keys delivered from the seller's agent to your buyer?" action="We handle it." color="indigo" delay={1200} />
-              <ExampleCard icon="🏡" title="Final Walkthrough Prep" description="Need someone to do a final check and minor touch-ups before the walkthrough?" action="Let us take care of it." color="rose" delay={1400} />
+              <ExampleCard icon="🪧" title="Put Out & Retrieve Signage" description="Get your For Sale signs in the ground or your open house directional signs out before showings? We'll handle placing and retrieving them." action="We'll get them up." color="red" delay={0} />
+              <ExampleCard icon="🏠" title="Lights Left On?" description="Buyer's agent left the lights on and your sellers want you to turn them off?" action="We can help." color="blue" delay={200} />
+              <ExampleCard icon="🔑" title="Lockbox Check" description="Need someone to verify the lockbox code is working before your showing?" action="We've got it." color="green" delay={400} />
+              <ExampleCard icon="🎨" title="Last-Minute Staging Touch" description="Need some last-minute decorations to complete a room before your showing?" action="Consider it done." color="purple" delay={600} />
+              <ExampleCard icon="💧" title="Property Check" description="Worried about a potential leak after a storm?" action="We're on it." color="cyan" delay={800} />
+              <ExampleCard icon="🎈" title="Last-Minute Supplies" description="Need balloons picked up for an open house that starts in two hours?" action="We can run out." color="pink" delay={1000} />
+              <ExampleCard icon="📋" title="Document Delivery" description="Need documents from your office to the title company before they close?" action="We'll rush it over." color="orange" delay={1200} />
+              <ExampleCard icon="🔑" title="Key Exchange" description="Need keys delivered from the seller's agent to your buyer?" action="We handle it." color="indigo" delay={1400} />
+              <ExampleCard icon="🏡" title="Final Walkthrough Prep" description="Need someone to do a final check and minor touch-ups before the walkthrough?" action="Let us take care of it." color="rose" delay={1600} />
             </div>
             <div className="text-center pt-8">
               <button onClick={() => setStep('select-type')} className="bg-gradient-to-r from-blue-600 to-blue-700 text-white px-8 py-4 rounded-xl font-semibold text-lg shadow-lg hover:shadow-xl">Request a Runner Now</button>
