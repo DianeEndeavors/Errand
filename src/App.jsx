@@ -401,28 +401,24 @@ export default function ErrandServiceApp() {
       <div className="max-w-2xl mx-auto px-6 py-8">
         {step === 'select-type' && (
           <div className="space-y-6">
+            <button onClick={() => setStep('what-we-do')} className="w-full bg-blue-50 border-2 border-blue-200 rounded-2xl p-5 hover:bg-blue-100 transition-all duration-300 text-left group">
+              <div className="flex items-start gap-4">
+                <div className="bg-blue-200 rounded-lg p-2 group-hover:bg-blue-300 transition-colors flex-shrink-0 mt-1">
+                  <Lightbulb className="w-5 h-5 text-blue-700" />
+                </div>
+                <div className="flex-1">
+                  <h3 className="text-base font-semibold text-blue-900 mb-1">What Can We Do For You?</h3>
+                  <p className="text-blue-700 text-sm">See examples of how we can help with your real estate needs</p>
+                </div>
+              </div>
+            </button>
+
             <div>
               <h2 className="text-xl font-semibold text-slate-900 mb-2">What do you need?</h2>
               <p className="text-slate-600">Select the type of service</p>
             </div>
 
             <div className="grid gap-4">
-              <button onClick={() => setStep('what-we-do')} className="bg-gradient-to-r from-purple-500 to-purple-600 rounded-2xl p-6 shadow-md hover:shadow-xl transition-all duration-300 text-left group">
-                <div className="flex items-start gap-4">
-                  <div className="bg-white/20 rounded-xl p-3 group-hover:bg-white/30 transition-colors">
-                    <Lightbulb className="w-6 h-6 text-white" />
-                  </div>
-                  <div className="flex-1">
-                    <h3 className="text-lg font-semibold text-white mb-1">What Can We Do For You?</h3>
-                    <p className="text-purple-100 text-sm">See examples of how we can help</p>
-                    <div className="flex items-center gap-2 mt-3 text-white text-sm font-medium">
-                      <span>Learn More</span>
-                      <ArrowRight className="w-4 h-4 group-hover:translate-x-1 transition-transform" />
-                    </div>
-                  </div>
-                </div>
-              </button>
-
               <button onClick={() => handleServiceSelect('delivery')} className="bg-white rounded-2xl p-6 shadow-md hover:shadow-xl transition-all duration-300 border-2 border-transparent hover:border-blue-500 text-left group">
                 <div className="flex items-start gap-4">
                   <div className="bg-blue-100 rounded-xl p-3 group-hover:bg-blue-500 transition-colors">
