@@ -30,7 +30,7 @@ const MapDisplay = ({ pickupCoords, dropoffCoords, errandCoords, signCurrentCoor
     // Add markers based on service type
     if (serviceType === 'delivery') {
       if (pickupCoords) {
-        const pickupMarker = L.marker([pickupCoords.lat, pickupCoords.lon], {
+        L.marker([pickupCoords.lat, pickupCoords.lon], {
           icon: L.icon({
             iconUrl: 'https://raw.githubusercontent.com/pointhi/leaflet-color-markers/master/img/marker-icon-2x-blue.png',
             shadowUrl: 'https://cdnjs.cloudflare.com/ajax/libs/leaflet/0.7.7/images/marker-shadow.png',
@@ -44,7 +44,7 @@ const MapDisplay = ({ pickupCoords, dropoffCoords, errandCoords, signCurrentCoor
       }
 
       if (dropoffCoords) {
-        const dropoffMarker = L.marker([dropoffCoords.lat, dropoffCoords.lon], {
+        L.marker([dropoffCoords.lat, dropoffCoords.lon], {
           icon: L.icon({
             iconUrl: 'https://raw.githubusercontent.com/pointhi/leaflet-color-markers/master/img/marker-icon-2x-green.png',
             shadowUrl: 'https://cdnjs.cloudflare.com/ajax/libs/leaflet/0.7.7/images/marker-shadow.png',
@@ -58,7 +58,7 @@ const MapDisplay = ({ pickupCoords, dropoffCoords, errandCoords, signCurrentCoor
       }
     } else if (serviceType === 'errand') {
       if (errandCoords) {
-        const errandMarker = L.marker([errandCoords.lat, errandCoords.lon], {
+        L.marker([errandCoords.lat, errandCoords.lon], {
           icon: L.icon({
             iconUrl: 'https://raw.githubusercontent.com/pointhi/leaflet-color-markers/master/img/marker-icon-2x-green.png',
             shadowUrl: 'https://cdnjs.cloudflare.com/ajax/libs/leaflet/0.7.7/images/marker-shadow.png',
@@ -72,7 +72,7 @@ const MapDisplay = ({ pickupCoords, dropoffCoords, errandCoords, signCurrentCoor
       }
     } else if (serviceType === 'single-sign' || serviceType === 'multiple-signs') {
       if (signCurrentCoords) {
-        const currentMarker = L.marker([signCurrentCoords.lat, signCurrentCoords.lon], {
+        L.marker([signCurrentCoords.lat, signCurrentCoords.lon], {
           icon: L.icon({
             iconUrl: 'https://raw.githubusercontent.com/pointhi/leaflet-color-markers/master/img/marker-icon-2x-orange.png',
             shadowUrl: 'https://cdnjs.cloudflare.com/ajax/libs/leaflet/0.7.7/images/marker-shadow.png',
@@ -86,7 +86,7 @@ const MapDisplay = ({ pickupCoords, dropoffCoords, errandCoords, signCurrentCoor
       }
 
       if (signDestinationCoords) {
-        const destMarker = L.marker([signDestinationCoords.lat, signDestinationCoords.lon], {
+        L.marker([signDestinationCoords.lat, signDestinationCoords.lon], {
           icon: L.icon({
             iconUrl: 'https://raw.githubusercontent.com/pointhi/leaflet-color-markers/master/img/marker-icon-2x-red.png',
             shadowUrl: 'https://cdnjs.cloudflare.com/ajax/libs/leaflet/0.7.7/images/marker-shadow.png',
@@ -102,9 +102,6 @@ const MapDisplay = ({ pickupCoords, dropoffCoords, errandCoords, signCurrentCoor
 
     // Fit map to show all markers
     if (markers.length > 0) {
-      const group = new L.featureGroup(mapInstance.current.eachLayer((layer) => {
-        if (layer instanceof L.Marker) return layer;
-      }));
       try {
         mapInstance.current.fitBounds(L.latLngBounds(markers), { padding: [50, 50] });
       } catch (e) {
