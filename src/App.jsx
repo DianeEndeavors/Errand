@@ -758,6 +758,9 @@ export default function ErrandServiceApp() {
                         {timeOption !== 'anytime' && (<button onClick={handleDowngradeTiming} className="text-xs text-blue-600 hover:text-blue-800 underline">Save money with extra flexibility?</button>)}
                       </div>
                       <div className="text-5xl font-bold text-blue-600">${pricing.total.toFixed(2)}</div>
+                      <div className="bg-white/60 rounded-lg p-3 mt-4 text-xs text-slate-700">
+                        <p>We will contact you for billing once your order is confirmed, or if you are an existing customer with a card on file, we will bill the card once your errand is confirmed. You will not be charged until you speak with a member of the team to confirm the details of your request.</p>
+                      </div>
                     </div>
                   );
                 })()}
