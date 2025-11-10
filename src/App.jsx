@@ -240,9 +240,21 @@ export default function ErrandServiceApp() {
   };
 
   const calculateMinimumTime = () => {
+    let minimumHours = 0.5; // Base 30 minutes
+
     const totalMiles = calculateTotalMileage();
-    const minimumHours = Math.ceil((totalMiles / 30) * 2) / 2;
-    return Math.max(0.5, minimumHours);
+    // Each 15 miles adds 30 minutes (0.5 hours)
+    const mileageTime = totalMiles / 30;
+    minimumHours += mileageTime;
+
+    // Each 6 signs adds 30 minutes (0.5 hours)
+    if ((serviceType === 'single-sign' || serviceType === 'multiple-signs') && numberOfSigns) {
+      const signTime = Math.ceil(numberOfSigns / 6) * 0.5;
+      minimumHours += signTime;
+    }
+
+    // Round to nearest 0.5 hour and enforce minimum
+    return Math.max(0.5, Math.ceil(minimumHours * 2) / 2);
   };
 
   useEffect(() => {
