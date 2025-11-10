@@ -724,7 +724,7 @@ export default function ErrandServiceApp() {
                 </div>
                 {calculateMinimumTime() > 0.5 && (
                   <div className="bg-blue-50 border border-blue-200 rounded-lg p-3 text-xs text-blue-700">
-                    <strong>Note:</strong> Minimum time required based on mileage ({calculateTotalMileage().toFixed(1)} miles total)
+                    <strong>Note:</strong> Minimum time required based on mileage{(serviceType === 'single-sign' || serviceType === 'multiple-signs') ? ' and sign quantity' : ''} ({calculateTotalMileage().toFixed(1)} miles total{(serviceType === 'single-sign' || serviceType === 'multiple-signs') ? ` + ${numberOfSigns} ${numberOfSigns === 1 ? 'sign' : 'signs'}` : ''})
                   </div>
                 )}
               </div>
