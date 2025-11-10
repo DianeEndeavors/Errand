@@ -1,5 +1,6 @@
 import React, { useState, useEffect, useRef } from 'react';
 import { MapPin, Package, ClipboardList, ArrowRight, Lightbulb, DollarSign } from 'lucide-react';
+import MapDisplay from './MapDisplay';
 
 function ExampleCard({ icon, title, description, action, color, delay }) {
   const [isVisible, setIsVisible] = useState(false);
@@ -665,13 +666,20 @@ export default function ErrandServiceApp() {
               <p className="text-slate-600">Review locations and provide task details</p>
             </div>
             <div className="bg-white rounded-2xl p-4 shadow-md">
-              <div className="aspect-video bg-slate-100 rounded-xl overflow-hidden relative flex items-center justify-center">
-                {pickupCoords || dropoffCoords || errandCoords || signCurrentCoords || signDestinationCoords ? (
-                  <div className="text-center p-6"><MapPin className="w-12 h-12 text-blue-600 mx-auto mb-4" /><p className="text-slate-700 font-medium">Locations Confirmed</p><p className="text-sm text-slate-500 mt-2">Ready to proceed to pricing</p></div>
-                ) : (
-                  <div className="text-center p-6"><MapPin className="w-12 h-12 text-slate-400 mx-auto mb-4" /><p className="text-slate-500">Enter addresses to confirm locations</p></div>
-                )}
-              </div>
+              {pickupCoords || dropoffCoords || errandCoords || signCurrentCoords || signDestinationCoords ? (
+                <MapDisplay 
+                  pickupCoords={pickupCoords}
+                  dropoffCoords={dropoffCoords}
+                  errandCoords={errandCoords}
+                  signCurrentCoords={signCurrentCoords}
+                  signDestinationCoords={signDestinationCoords}
+                  serviceType={serviceType}
+                />
+              ) : (
+                <div className="aspect-video bg-slate-100 rounded-xl overflow-hidden relative flex items-center justify-center">
+                  <div className="text-center p-6"><MapPin className="w-12 h-12 text-slate-400 mx-auto mb-4" /><p className="text-slate-500">Enter addresses to see map</p></div>
+                </div>
+              )}
               <div className="mt-4 space-y-2 text-sm">
                 {serviceType === 'delivery' ? (
                   <><div><strong>Pickup:</strong> {pickupLocation}</div><div><strong>Dropoff:</strong> {dropoffLocation}</div></>
