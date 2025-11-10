@@ -474,6 +474,21 @@ export default function ErrandServiceApp() {
             </div>
 
             <div className="grid gap-4">
+              <div className="bg-gradient-to-br from-purple-600 to-purple-700 rounded-2xl p-6 shadow-md text-left">
+                <div className="flex items-start gap-4">
+                  <div className="bg-white bg-opacity-20 rounded-xl p-3 flex-shrink-0">
+                    <svg className="w-6 h-6 text-white" fill="currentColor" viewBox="0 0 24 24">
+                      <path d="M12 2C6.48 2 2 6.48 2 12s4.48 10 10 10 10-4.48 10-10S17.52 2 12 2zm-2 15l-5-5 1.41-1.41L10 14.17l7.59-7.59L19 8l-9 9z"/>
+                    </svg>
+                  </div>
+                  <div className="flex-1">
+                    <h3 className="text-lg font-semibold text-white mb-2">Why Choose Us?</h3>
+                    <p className="text-purple-100 text-sm leading-relaxed">Do it with Diane isn't just another errand service. We're a trained, vetted concierge team from Diane Endeavors—not a random person hoping things work out. We understand what real estate agents need and we're genuinely invested in your success.</p>
+                    <p className="text-purple-100 text-sm leading-relaxed mt-2">We stay in constant contact throughout every errand, handle the details you specify, and deliver results that actually matter. Yes, we may cost more—but you're not paying for convenience, you're paying for reliability, expertise, and a partner who actually cares about getting it right.</p>
+                  </div>
+                </div>
+              </div>
+
               <button onClick={() => handleServiceSelect('delivery')} className="bg-white rounded-2xl p-6 shadow-md hover:shadow-xl transition-all duration-300 border-2 border-transparent hover:border-purple-500 text-left group">
                 <div className="flex items-start gap-4">
                   <div className="bg-purple-100 rounded-xl p-3 group-hover:bg-purple-500 transition-colors">
