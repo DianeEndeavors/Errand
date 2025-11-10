@@ -102,6 +102,17 @@ export default function ErrandServiceApp() {
     }
   }, []);
 
+  // Helper function to check if address is in Georgia
+  const isGeorgiaAddress = (place) => {
+    if (!place.address_components) return false;
+    for (let component of place.address_components) {
+      if (component.types.includes('administrative_area_level_1')) {
+        return component.short_name === 'GA';
+      }
+    }
+    return false;
+  };
+
   // Setup Google Places Autocomplete for pickup
   useEffect(() => {
     if (googleLoaded && pickupInputRef.current && window.google && window.google.maps && step === 'enter-locations' && serviceType === 'delivery') {
@@ -113,6 +124,11 @@ export default function ErrandServiceApp() {
 
       autocomplete.addListener('place_changed', () => {
         const place = autocomplete.getPlace();
+        if (!isGeorgiaAddress(place)) {
+          alert('Please enter an address in Georgia (GA)');
+          pickupInputRef.current.value = '';
+          return;
+        }
         if (place.geometry) {
           setPickupLocation(place.formatted_address || place.name);
           setPickupCoords({
@@ -135,6 +151,11 @@ export default function ErrandServiceApp() {
 
       autocomplete.addListener('place_changed', () => {
         const place = autocomplete.getPlace();
+        if (!isGeorgiaAddress(place)) {
+          alert('Please enter an address in Georgia (GA)');
+          dropoffInputRef.current.value = '';
+          return;
+        }
         if (place.geometry) {
           setDropoffLocation(place.formatted_address || place.name);
           setDropoffCoords({
@@ -157,6 +178,11 @@ export default function ErrandServiceApp() {
 
       autocomplete.addListener('place_changed', () => {
         const place = autocomplete.getPlace();
+        if (!isGeorgiaAddress(place)) {
+          alert('Please enter an address in Georgia (GA)');
+          errandInputRef.current.value = '';
+          return;
+        }
         if (place.geometry) {
           setErrandLocation(place.formatted_address || place.name);
           setErrandCoords({
@@ -179,6 +205,11 @@ export default function ErrandServiceApp() {
 
       autocomplete.addListener('place_changed', () => {
         const place = autocomplete.getPlace();
+        if (!isGeorgiaAddress(place)) {
+          alert('Please enter an address in Georgia (GA)');
+          errandInputRef.current.value = '';
+          return;
+        }
         if (place.geometry) {
           setSignCurrentLocation(place.formatted_address || place.name);
           setSignCurrentCoords({
@@ -201,6 +232,11 @@ export default function ErrandServiceApp() {
 
       autocomplete.addListener('place_changed', () => {
         const place = autocomplete.getPlace();
+        if (!isGeorgiaAddress(place)) {
+          alert('Please enter an address in Georgia (GA)');
+          signDestinationInputRef.current.value = '';
+          return;
+        }
         if (place.geometry) {
           setSignDestinationLocation(place.formatted_address || place.name);
           setSignDestinationCoords({
@@ -338,7 +374,7 @@ export default function ErrandServiceApp() {
       totalMileage: `${pricing.distance.toFixed(1)} miles`, basePrice: `${pricing.basePrice.toFixed(2)}`,
       mileageCost: `${pricing.mileageCost.toFixed(2)} ($1.25/mile)`, timeCost: `${pricing.timeCost.toFixed(2)}`,
       subtotal: `${pricing.subtotal.toFixed(2)}`, serviceFee: `${pricing.markupAmount.toFixed(2)} (${pricing.markupPercent}%)`,
-      totalPrice: `${pricing.total.toFixed(2)}`, submissionTime: submissionTime, _subject: 'New Agent Assist Errand Request'
+      totalPrice: `${pricing.total.toFixed(2)}`, submissionTime: submissionTime, _subject: 'New Do it with Diane Errand Request'
     };
     try {
       const response = await fetch('https://formspree.io/f/movyabey', { method: 'POST', headers: { 'Content-Type': 'application/json' }, body: JSON.stringify(formData) });
@@ -412,8 +448,8 @@ export default function ErrandServiceApp() {
     <div className="min-h-screen bg-gradient-to-br from-slate-50 to-slate-100">
       <div className="bg-white shadow-sm border-b border-slate-200">
         <div className="max-w-2xl mx-auto px-6 py-4">
-          <h1 className="text-2xl font-bold text-slate-900">Agent Assist</h1>
-          <p className="text-sm text-slate-600 mt-1">Professional errand services for real estate agents</p>
+          <h1 className="text-2xl font-bold text-slate-900">Do it with Diane!</h1>
+          <p className="text-sm text-slate-600 mt-1">Local errand services in the North Atlanta area</p>
         </div>
       </div>
 
@@ -783,7 +819,7 @@ export default function ErrandServiceApp() {
                     <p className="font-medium">What happens next:</p>
                     <ol className="space-y-2 ml-4"><li>1. We will contact you to confirm the details of your request.</li><li>2. Once confirmed, we will take payment by card on file or over the phone if you're a new customer.</li><li>3. A runner will be assigned and you'll receive updates via text or call.</li></ol>
                   </div>
-                  <p className="text-sm text-green-700 mt-6">Thank you for choosing Agent Assist!</p>
+                  <p className="text-sm text-green-700 mt-6">Thank you for choosing Do it with Diane!</p>
                 </div>
                 <button onClick={() => window.location.reload()} className="w-full py-4 rounded-xl font-semibold text-white bg-purple-600 hover:bg-purple-700">Submit Another Request</button>
               </div>
