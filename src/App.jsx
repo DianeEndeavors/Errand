@@ -83,7 +83,7 @@ export default function ErrandServiceApp() {
   const signDestinationInputRef = useRef(null);
   const googleMapsLoaded = useRef(false);
 
-  const BASE_ADDRESS_COORDS = { lat: 34.0780335, lon: 84.2621625 };
+  const BASE_ADDRESS_COORDS = { lat: 34.0780335, lon: -84.2621625 };
 
   // Load Google Maps script
   useEffect(() => {
@@ -600,7 +600,7 @@ export default function ErrandServiceApp() {
                 <>
                   <div><label className="block text-sm font-medium text-slate-700 mb-2"><div className="flex items-center gap-2"><div className="w-8 h-8 rounded-full bg-blue-100 flex items-center justify-center"><MapPin className="w-4 h-4 text-blue-600" /></div>Pickup Location</div></label>
                   <div className="flex gap-2 mb-3">
-                    <select value="" onChange={(e) => { if (e.target.value) { setPickupLocation(e.target.value); setPickupCoords({ lat: 34.0780335, lon: 84.2621625 }); e.target.value = ''; } }} className="flex-1 px-3 py-2 border border-slate-300 rounded-lg text-sm focus:outline-none focus:ring-2 focus:ring-blue-500">
+                    <select value="" onChange={(e) => { if (e.target.value) { setPickupLocation(e.target.value); setPickupCoords({ lat: 34.0780335, lon: -84.2621625 }); e.target.value = ''; } }} className="flex-1 px-3 py-2 border border-slate-300 rounded-lg text-sm focus:outline-none focus:ring-2 focus:ring-blue-500">
                       <option value="">Select preset location...</option>
                       <option value="KW North Atlanta, 925 N Point Parkway, Alpharetta, GA 30005">KW North Atlanta - 925 N Point Parkway, Alpharetta, GA 30005</option>
                     </select>
@@ -609,7 +609,7 @@ export default function ErrandServiceApp() {
                   </div>
                   <div><label className="block text-sm font-medium text-slate-700 mb-2"><div className="flex items-center gap-2"><div className="w-8 h-8 rounded-full bg-green-100 flex items-center justify-center"><MapPin className="w-4 h-4 text-green-600" /></div>Dropoff Location</div></label>
                   <div className="flex gap-2 mb-3">
-                    <select value="" onChange={(e) => { if (e.target.value) { setDropoffLocation(e.target.value); setDropoffCoords({ lat: 34.0780335, lon: 84.2621625 }); e.target.value = ''; } }} className="flex-1 px-3 py-2 border border-slate-300 rounded-lg text-sm focus:outline-none focus:ring-2 focus:ring-green-500">
+                    <select value="" onChange={(e) => { if (e.target.value) { setDropoffLocation(e.target.value); setDropoffCoords({ lat: 34.0780335, lon: -84.2621625 }); e.target.value = ''; } }} className="flex-1 px-3 py-2 border border-slate-300 rounded-lg text-sm focus:outline-none focus:ring-2 focus:ring-green-500">
                       <option value="">Select preset location...</option>
                       <option value="KW North Atlanta, 925 N Point Parkway, Alpharetta, GA 30005">KW North Atlanta - 925 N Point Parkway, Alpharetta, GA 30005</option>
                     </select>
@@ -621,7 +621,7 @@ export default function ErrandServiceApp() {
                 <>
                   <div><label className="block text-sm font-medium text-slate-700 mb-2"><div className="flex items-center gap-2"><div className="w-8 h-8 rounded-full bg-orange-100 flex items-center justify-center"><MapPin className="w-4 h-4 text-orange-600" /></div>{serviceType === 'single-sign' ? "Where is your sign now?" : "Where are your signs now?"}</div></label>
                   <div className="flex gap-2 mb-3">
-                    <select value="" onChange={(e) => { if (e.target.value) { setSignCurrentLocation(e.target.value); setSignCurrentCoords({ lat: 34.0780335, lon: 84.2621625 }); e.target.value = ''; } }} className="flex-1 px-3 py-2 border border-slate-300 rounded-lg text-sm focus:outline-none focus:ring-2 focus:ring-orange-500">
+                    <select value="" onChange={(e) => { if (e.target.value) { setSignCurrentLocation(e.target.value); setSignCurrentCoords({ lat: 34.0780335, lon: -84.2621625 }); e.target.value = ''; } }} className="flex-1 px-3 py-2 border border-slate-300 rounded-lg text-sm focus:outline-none focus:ring-2 focus:ring-orange-500">
                       <option value="">Select preset location...</option>
                       <option value="KW North Atlanta, 925 N Point Parkway, Alpharetta, GA 30005">KW North Atlanta - 925 N Point Parkway, Alpharetta, GA 30005</option>
                     </select>
@@ -630,7 +630,7 @@ export default function ErrandServiceApp() {
                   </div>
                   <div><label className="block text-sm font-medium text-slate-700 mb-2"><div className="flex items-center gap-2"><div className="w-8 h-8 rounded-full bg-orange-100 flex items-center justify-center"><MapPin className="w-4 h-4 text-orange-600" /></div>Where do you need {serviceType === 'single-sign' ? 'it' : 'them'} to be put out?</div></label>
                   <div className="flex gap-2 mb-3">
-                    <select value="" onChange={(e) => { if (e.target.value) { setSignDestinationLocation(e.target.value); setSignDestinationCoords({ lat: 34.0780335, lon: 84.2621625 }); e.target.value = ''; } }} className="flex-1 px-3 py-2 border border-slate-300 rounded-lg text-sm focus:outline-none focus:ring-2 focus:ring-purple-500">
+                    <select value="" onChange={(e) => { if (e.target.value) { setSignDestinationLocation(e.target.value); setSignDestinationCoords({ lat: 34.0780335, lon: -84.2621625 }); e.target.value = ''; } }} className="flex-1 px-3 py-2 border border-slate-300 rounded-lg text-sm focus:outline-none focus:ring-2 focus:ring-purple-500">
                       <option value="">Select preset location...</option>
                       <option value="KW North Atlanta, 925 N Point Parkway, Alpharetta, GA 30005">KW North Atlanta - 925 N Point Parkway, Alpharetta, GA 30005</option>
                     </select>
@@ -641,7 +641,7 @@ export default function ErrandServiceApp() {
               ) : (
                 <div><label className="block text-sm font-medium text-slate-700 mb-2"><div className="flex items-center gap-2"><div className="w-8 h-8 rounded-full bg-green-100 flex items-center justify-center"><MapPin className="w-4 h-4 text-green-600" /></div>Errand Location</div></label>
                 <div className="flex gap-2 mb-3">
-                  <select value="" onChange={(e) => { if (e.target.value) { setErrandLocation(e.target.value); setErrandCoords({ lat: 34.0780335, lon: 84.2621625 }); e.target.value = ''; } }} className="flex-1 px-3 py-2 border border-slate-300 rounded-lg text-sm focus:outline-none focus:ring-2 focus:ring-green-500">
+                  <select value="" onChange={(e) => { if (e.target.value) { setErrandLocation(e.target.value); setErrandCoords({ lat: 34.0780335, lon: -84.2621625 }); e.target.value = ''; } }} className="flex-1 px-3 py-2 border border-slate-300 rounded-lg text-sm focus:outline-none focus:ring-2 focus:ring-green-500">
                     <option value="">Select preset location...</option>
                     <option value="KW North Atlanta, 925 N Point Parkway, Alpharetta, GA 30005">KW North Atlanta - 925 N Point Parkway, Alpharetta, GA 30005</option>
                   </select>

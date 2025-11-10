@@ -12,7 +12,7 @@ const MapDisplay = ({ pickupCoords, dropoffCoords, errandCoords, signCurrentCoor
     // Initialize map
     if (!mapInstance.current) {
       try {
-        mapInstance.current = L.map(mapRef.current).setView([34.0780335, 84.2621625], 11);
+        mapInstance.current = L.map(mapRef.current).setView([34.0780335, -84.2621625], 11);
 
         L.tileLayer('https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png', {
           attribution: '© OpenStreetMap contributors',
@@ -110,7 +110,7 @@ const MapDisplay = ({ pickupCoords, dropoffCoords, errandCoords, signCurrentCoor
         mapInstance.current.fitBounds(L.latLngBounds(markers), { padding: [50, 50] });
       } catch (e) {
         // Fallback if bounds calculation fails
-        mapInstance.current.setView([34.0780335, 84.2621625], 11);
+        mapInstance.current.setView([34.0780335, -84.2621625], 11);
       }
     }
   }, [pickupCoords, dropoffCoords, errandCoords, signCurrentCoords, signDestinationCoords, serviceType]);
