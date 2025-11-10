@@ -243,9 +243,13 @@ export default function ErrandServiceApp() {
     let minimumHours = 0.5; // Base 30 minutes
 
     const totalMiles = calculateTotalMileage();
-    // Each 15 miles adds 30 minutes (0.5 hours)
-    const mileageTime = totalMiles / 30;
-    minimumHours += mileageTime;
+    // First 15 miles are included in base time
+    // Each 15 miles exceeding the first 15 adds 30 minutes (0.5 hours)
+    if (totalMiles > 15) {
+      const excessMiles = totalMiles - 15;
+      const mileageTime = Math.ceil(excessMiles / 15) * 0.5;
+      minimumHours += mileageTime;
+    }
 
     // Each 6 signs adds 30 minutes (0.5 hours)
     if ((serviceType === 'single-sign' || serviceType === 'multiple-signs') && numberOfSigns) {
