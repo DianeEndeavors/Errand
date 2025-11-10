@@ -1,5 +1,6 @@
 import React, { useEffect, useRef } from 'react';
 import L from 'leaflet';
+import 'leaflet/dist/leaflet.css';
 
 const MapDisplay = ({ pickupCoords, dropoffCoords, errandCoords, signCurrentCoords, signDestinationCoords, serviceType }) => {
   const mapRef = useRef(null);
@@ -10,12 +11,17 @@ const MapDisplay = ({ pickupCoords, dropoffCoords, errandCoords, signCurrentCoor
 
     // Initialize map
     if (!mapInstance.current) {
-      mapInstance.current = L.map(mapRef.current).setView([34.0489, -84.2938], 11);
+      try {
+        mapInstance.current = L.map(mapRef.current).setView([34.0489, -84.2938], 11);
 
-      L.tileLayer('https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png', {
-        attribution: '© OpenStreetMap contributors',
-        maxZoom: 19,
-      }).addTo(mapInstance.current);
+        L.tileLayer('https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png', {
+          attribution: '© OpenStreetMap contributors',
+          maxZoom: 19,
+        }).addTo(mapInstance.current);
+      } catch (error) {
+        console.error('Error initializing map:', error);
+        return;
+      }
     }
 
     // Clear existing markers
