@@ -273,7 +273,7 @@ export default function ErrandServiceApp() {
 
   const calculatePricing = () => {
     const BASE_PRICE = 75;
-    const MILEAGE_RATE = 1.50;
+    const MILEAGE_RATE = 1.25;
     const HOURLY_RATE = 60;
     let MARKUP = 0.25;
     if (timeOption === 'anytime') MARKUP = 0.10;
@@ -331,9 +331,11 @@ export default function ErrandServiceApp() {
       pickupLocation: pickupLocation || 'N/A', dropoffLocation: dropoffLocation || 'N/A', errandLocation: errandLocation || 'N/A',
       signCurrentLocation: signCurrentLocation || 'N/A', signDestinationLocation: signDestinationLocation || 'N/A',
       numberOfSigns: serviceType === 'multiple-signs' ? numberOfSigns : 'N/A',
+      signCostPerUnit: serviceType === 'multiple-signs' ? '$5 per sign' : 'N/A',
+      signCost: pricing.signCost > 0 ? `${pricing.signCost.toFixed(2)}` : 'N/A',
       taskDescription: jobDescription,
       totalMileage: `${pricing.distance.toFixed(1)} miles`, basePrice: `${pricing.basePrice.toFixed(2)}`,
-      mileageCost: `${pricing.mileageCost.toFixed(2)}`, timeCost: `${pricing.timeCost.toFixed(2)}`,
+      mileageCost: `${pricing.mileageCost.toFixed(2)} ($1.25/mile)`, timeCost: `${pricing.timeCost.toFixed(2)}`,
       subtotal: `${pricing.subtotal.toFixed(2)}`, serviceFee: `${pricing.markupAmount.toFixed(2)} (${pricing.markupPercent}%)`,
       totalPrice: `${pricing.total.toFixed(2)}`, submissionTime: submissionTime, _subject: 'New Agent Assist Errand Request'
     };
