@@ -545,16 +545,14 @@ export default function ErrandServiceApp() {
                     <input type="radio" name="timeOption" value="anytime" checked={timeOption === 'anytime'} onChange={(e) => setTimeOption(e.target.value)} className="mt-1" />
                     <div className="flex-1">
                       <div className="font-medium">Anytime (10am - 4pm)</div>
-                      <p className="text-sm text-slate-600 mt-1">Most flexible</p>
-                      <p className="text-xs text-blue-600 mt-2 font-medium">Best Price</p>
+                      <p className="text-xs text-blue-600 mt-2 font-medium">Best Price, Most Flexibility</p>
                     </div>
                   </label>
                   <label className="flex items-start gap-3 p-4 border-2 rounded-xl cursor-pointer hover:border-blue-400">
                     <input type="radio" name="timeOption" value="window" checked={timeOption === 'window'} onChange={(e) => setTimeOption(e.target.value)} className="mt-1" />
                     <div className="flex-1">
                       <div className="font-medium">2-Hour Window</div>
-                      <p className="text-sm text-slate-600 mt-1">Choose a 2-hour window</p>
-                      <p className="text-xs text-blue-600 mt-2 font-medium">Moderate Price</p>
+                      <p className="text-xs text-blue-600 mt-2 font-medium">Moderate Price, Moderate Flexibility</p>
                       {timeOption === 'window' && (
                         <select value={windowStartTime} onChange={(e) => setWindowStartTime(e.target.value)} className="mt-3 w-full px-3 py-2 border rounded-lg">
                           <option value="">Select start time...</option>
@@ -571,8 +569,7 @@ export default function ErrandServiceApp() {
                     <input type="radio" name="timeOption" value="specific" checked={timeOption === 'specific'} onChange={(e) => setTimeOption(e.target.value)} className="mt-1" />
                     <div className="flex-1">
                       <div className="font-medium">Specific Time</div>
-                      <p className="text-sm text-slate-600 mt-1">Need it done at an exact time</p>
-                      <p className="text-xs text-green-600 mt-2 font-medium">Premium</p>
+                      <p className="text-xs text-green-600 mt-2 font-medium">When time is of the essence</p>
                       {timeOption === 'specific' && (
                         <input type="time" value={specificTime} onChange={(e) => setSpecificTime(e.target.value)} className="mt-3 w-full px-3 py-2 border rounded-lg" />
                       )}
@@ -760,7 +757,6 @@ export default function ErrandServiceApp() {
                           <div className="flex justify-between text-base"><span className="font-semibold text-slate-900">Total:</span><span className="font-bold text-blue-600">${pricing.total.toFixed(2)}</span></div>
                         </div>
                       </div>
-                      <p className="text-xs text-slate-600 mt-4">Final charges may vary based on actual time worked.</p>
                     </div>
                   );
                 })()}
@@ -780,7 +776,7 @@ export default function ErrandServiceApp() {
                   <h2 className="text-2xl font-bold text-green-800 mb-4">Your Request Has Been Received!</h2>
                   <div className="bg-white rounded-xl p-6 text-left space-y-3 text-slate-700">
                     <p className="font-medium">What happens next:</p>
-                    <ol className="space-y-2 ml-4"><li>1. We will contact you to confirm</li><li>2. Payment will be processed</li><li>3. A runner will be assigned</li></ol>
+                    <ol className="space-y-2 ml-4"><li>1. We will contact you to confirm the details of your request.</li><li>2. Once confirmed, we will take payment by card on file or over the phone if you're a new customer.</li><li>3. A runner will be assigned and you'll receive updates via text or call.</li></ol>
                   </div>
                   <p className="text-sm text-green-700 mt-6">Thank you for choosing Agent Assist!</p>
                 </div>
