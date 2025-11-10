@@ -78,6 +78,8 @@ export default function ErrandServiceApp() {
   const pickupInputRef = useRef(null);
   const dropoffInputRef = useRef(null);
   const errandInputRef = useRef(null);
+  const signCurrentInputRef = useRef(null);
+  const signDestinationInputRef = useRef(null);
   const googleMapsLoaded = useRef(false);
 
   const BASE_ADDRESS_COORDS = { lat: 34.0489, lon: -84.2938 };
@@ -165,6 +167,50 @@ export default function ErrandServiceApp() {
     }
   }, [googleLoaded, step, serviceType]);
 
+  // Setup Google Places Autocomplete for sign current location
+  useEffect(() => {
+    if (googleLoaded && errandInputRef.current && window.google && window.google.maps && step === 'enter-locations' && (serviceType === 'single-sign' || serviceType === 'multiple-signs')) {
+      const autocomplete = new window.google.maps.places.Autocomplete(errandInputRef.current, {
+        componentRestrictions: { country: 'us' },
+        fields: ['address_components', 'geometry', 'formatted_address', 'name'],
+        types: ['address']
+      });
+
+      autocomplete.addListener('place_changed', () => {
+        const place = autocomplete.getPlace();
+        if (place.geometry) {
+          setSignCurrentLocation(place.formatted_address || place.name);
+          setSignCurrentCoords({
+            lat: place.geometry.location.lat(),
+            lon: place.geometry.location.lng()
+          });
+        }
+      });
+    }
+  }, [googleLoaded, step, serviceType]);
+
+  // Setup Google Places Autocomplete for sign destination location
+  useEffect(() => {
+    if (googleLoaded && signDestinationInputRef.current && window.google && window.google.maps && step === 'enter-locations' && (serviceType === 'single-sign' || serviceType === 'multiple-signs')) {
+      const autocomplete = new window.google.maps.places.Autocomplete(signDestinationInputRef.current, {
+        componentRestrictions: { country: 'us' },
+        fields: ['address_components', 'geometry', 'formatted_address', 'name'],
+        types: ['address']
+      });
+
+      autocomplete.addListener('place_changed', () => {
+        const place = autocomplete.getPlace();
+        if (place.geometry) {
+          setSignDestinationLocation(place.formatted_address || place.name);
+          setSignDestinationCoords({
+            lat: place.geometry.location.lat(),
+            lon: place.geometry.location.lng()
+          });
+        }
+      });
+    }
+  }, [googleLoaded, step, serviceType]);
+
   const calculateDistance = (lat1, lon1, lat2, lon2) => {
     const R = 3959;
     const dLat = (lat2 - lat1) * Math.PI / 180;
@@ -221,10 +267,17 @@ export default function ErrandServiceApp() {
     const mileage = totalDistance * MILEAGE_RATE;
     const additionalHours = Math.max(0, userEstimatedHours - 1);
     const timeCost = additionalHours * HOURLY_RATE;
-    const subtotal = BASE_PRICE + mileage + timeCost;
+    
+    // Add $5 per sign for multiple signs (after the first one)
+    let signCost = 0;
+    if (serviceType === 'multiple-signs' && numberOfSigns > 1) {
+      signCost = (numberOfSigns - 1) * 5;
+    }
+    
+    const subtotal = BASE_PRICE + mileage + timeCost + signCost;
     const markupAmount = subtotal * MARKUP;
     const total = subtotal + markupAmount;
-    return { basePrice: BASE_PRICE, distance: totalDistance, mileageCost: mileage, timeCost: timeCost, subtotal: subtotal, markupAmount: markupAmount, markupPercent: MARKUP * 100, total: total };
+    return { basePrice: BASE_PRICE, distance: totalDistance, mileageCost: mileage, timeCost: timeCost, signCost: signCost, subtotal: subtotal, markupAmount: markupAmount, markupPercent: MARKUP * 100, total: total };
   };
 
   const isToday = (dateString) => {
@@ -560,7 +613,7 @@ export default function ErrandServiceApp() {
                       <option value="KW North Atlanta, 925 N Point Parkway, Alpharetta, GA 30005">KW North Atlanta - 925 N Point Parkway, Alpharetta, GA 30005</option>
                     </select>
                   </div>
-                  <input type="text" value={signCurrentLocation} onChange={(e) => setSignCurrentLocation(e.target.value)} placeholder="Enter current sign location" className="w-full px-4 py-3 border border-slate-300 rounded-xl focus:outline-none focus:ring-2 focus:ring-orange-500" />
+                  <input type="text" ref={errandInputRef} value={signCurrentLocation} onChange={(e) => setSignCurrentLocation(e.target.value)} placeholder="Enter current sign location" className="w-full px-4 py-3 border border-slate-300 rounded-xl focus:outline-none focus:ring-2 focus:ring-orange-500" />
                   </div>
                   <div><label className="block text-sm font-medium text-slate-700 mb-2"><div className="flex items-center gap-2"><div className="w-8 h-8 rounded-full bg-orange-100 flex items-center justify-center"><MapPin className="w-4 h-4 text-orange-600" /></div>Where do you need {serviceType === 'single-sign' ? 'it' : 'them'} to be put out?</div></label>
                   <div className="flex gap-2 mb-3">
@@ -569,7 +622,7 @@ export default function ErrandServiceApp() {
                       <option value="KW North Atlanta, 925 N Point Parkway, Alpharetta, GA 30005">KW North Atlanta - 925 N Point Parkway, Alpharetta, GA 30005</option>
                     </select>
                   </div>
-                  <input type="text" value={signDestinationLocation} onChange={(e) => setSignDestinationLocation(e.target.value)} placeholder="Enter destination address" className="w-full px-4 py-3 border border-slate-300 rounded-xl focus:outline-none focus:ring-2 focus:ring-orange-500" />
+                  <input type="text" ref={signDestinationInputRef} value={signDestinationLocation} onChange={(e) => setSignDestinationLocation(e.target.value)} placeholder="Enter destination address" className="w-full px-4 py-3 border border-slate-300 rounded-xl focus:outline-none focus:ring-2 focus:ring-orange-500" />
                   </div>
                 </>
               ) : (
@@ -615,9 +668,9 @@ export default function ErrandServiceApp() {
             <div className="bg-white rounded-2xl p-4 shadow-md">
               <div className="aspect-video bg-slate-100 rounded-xl overflow-hidden relative flex items-center justify-center">
                 {pickupCoords || dropoffCoords || errandCoords || signCurrentCoords || signDestinationCoords ? (
-                  <div className="text-center p-6"><MapPin className="w-12 h-12 text-blue-600 mx-auto mb-4" /><p className="text-slate-700 font-medium">Location Confirmed</p><p className="text-sm text-slate-500 mt-2">Map preview will be available on deployed version</p></div>
+                  <div className="text-center p-6"><MapPin className="w-12 h-12 text-blue-600 mx-auto mb-4" /><p className="text-slate-700 font-medium">Locations Confirmed</p><p className="text-sm text-slate-500 mt-2">Ready to proceed to pricing</p></div>
                 ) : (
-                  <div className="text-center p-6"><MapPin className="w-12 h-12 text-slate-400 mx-auto mb-4" /><p className="text-slate-500">Enter addresses to see location</p></div>
+                  <div className="text-center p-6"><MapPin className="w-12 h-12 text-slate-400 mx-auto mb-4" /><p className="text-slate-500">Enter addresses to confirm locations</p></div>
                 )}
               </div>
               <div className="mt-4 space-y-2 text-sm">
@@ -691,6 +744,7 @@ export default function ErrandServiceApp() {
                         <div className="flex justify-between"><span className="text-slate-600">Base Price:</span><span className="font-medium">${pricing.basePrice.toFixed(2)}</span></div>
                         <div className="flex justify-between"><span className="text-slate-600">Mileage ({pricing.distance.toFixed(1)} mi @ $1.50/mi):</span><span className="font-medium">${pricing.mileageCost.toFixed(2)}</span></div>
                         <div className="flex justify-between"><span className="text-slate-600">Additional Time ({Math.max(0, userEstimatedHours - 1).toFixed(1)} hrs @ $60/hr):</span><span className="font-medium">${pricing.timeCost.toFixed(2)}</span></div>
+                        {pricing.signCost > 0 && (<div className="flex justify-between"><span className="text-slate-600">Additional Signs ({numberOfSigns - 1} signs @ $5/sign):</span><span className="font-medium">${pricing.signCost.toFixed(2)}</span></div>)}
                         <div className="border-t border-slate-300 pt-2 mt-2">
                           <div className="flex justify-between"><span className="text-slate-600">Subtotal:</span><span className="font-medium">${pricing.subtotal.toFixed(2)}</span></div>
                         </div>
