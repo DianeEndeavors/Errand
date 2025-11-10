@@ -420,14 +420,14 @@ export default function ErrandServiceApp() {
       <div className="max-w-2xl mx-auto px-6 py-8">
         {step === 'select-type' && (
           <div className="space-y-6">
-            <button onClick={() => setStep('what-we-do')} className="w-full bg-blue-50 border-2 border-blue-200 rounded-2xl p-5 hover:bg-blue-100 transition-all duration-300 text-left group">
+            <button onClick={() => setStep('what-we-do')} className="w-full bg-purple-50 border-2 border-purple-300 rounded-2xl p-5 hover:bg-purple-100 transition-all duration-300 text-left group">
               <div className="flex items-start gap-4">
-                <div className="bg-blue-200 rounded-lg p-2 group-hover:bg-blue-300 transition-colors flex-shrink-0 mt-1">
-                  <Lightbulb className="w-5 h-5 text-blue-700" />
+                <div className="bg-purple-200 rounded-lg p-2 group-hover:bg-yellow-300 transition-colors flex-shrink-0 mt-1">
+                  <Lightbulb className="w-5 h-5 text-purple-700" />
                 </div>
                 <div className="flex-1">
-                  <h3 className="text-base font-semibold text-blue-900 mb-1">What Can We Do For You?</h3>
-                  <p className="text-blue-700 text-sm">See examples of how we can help with your real estate needs</p>
+                  <h3 className="text-base font-semibold text-purple-900 mb-1">What Can We Do For You?</h3>
+                  <p className="text-purple-700 text-sm">See examples of how we can help with your real estate needs</p>
                 </div>
               </div>
             </button>
@@ -438,15 +438,15 @@ export default function ErrandServiceApp() {
             </div>
 
             <div className="grid gap-4">
-              <button onClick={() => handleServiceSelect('delivery')} className="bg-white rounded-2xl p-6 shadow-md hover:shadow-xl transition-all duration-300 border-2 border-transparent hover:border-blue-500 text-left group">
+              <button onClick={() => handleServiceSelect('delivery')} className="bg-white rounded-2xl p-6 shadow-md hover:shadow-xl transition-all duration-300 border-2 border-transparent hover:border-purple-500 text-left group">
                 <div className="flex items-start gap-4">
-                  <div className="bg-blue-100 rounded-xl p-3 group-hover:bg-blue-500 transition-colors">
-                    <Package className="w-6 h-6 text-blue-600 group-hover:text-white" />
+                  <div className="bg-purple-100 rounded-xl p-3 group-hover:bg-purple-500 transition-colors">
+                    <Package className="w-6 h-6 text-purple-600 group-hover:text-white" />
                   </div>
                   <div className="flex-1">
                     <h3 className="text-lg font-semibold text-slate-900 mb-1">Delivery Service</h3>
                     <p className="text-slate-600 text-sm">Pick up and deliver items between two locations</p>
-                    <div className="flex items-center gap-2 mt-3 text-blue-600 text-sm font-medium">
+                    <div className="flex items-center gap-2 mt-3 text-purple-600 text-sm font-medium">
                       <span>Select</span>
                       <ArrowRight className="w-4 h-4 group-hover:translate-x-1 transition-transform" />
                     </div>
@@ -528,7 +528,7 @@ export default function ErrandServiceApp() {
               <ExampleCard icon="🏡" title="Final Walkthrough Prep" description="Need someone to do a final check and minor touch-ups before the walkthrough?" action="Let us take care of it." color="rose" delay={1600} />
             </div>
             <div className="text-center pt-8">
-              <button onClick={() => setStep('select-type')} className="bg-gradient-to-r from-blue-600 to-blue-700 text-white px-8 py-4 rounded-xl font-semibold text-lg shadow-lg hover:shadow-xl">Request a Runner Now</button>
+              <button onClick={() => setStep('select-type')} className="bg-gradient-to-r from-purple-600 to-yellow-500 text-white px-8 py-4 rounded-xl font-semibold text-lg shadow-lg hover:shadow-xl hover:from-purple-700 hover:to-yellow-600">Request a Runner Now</button>
             </div>
           </div>
         )}
@@ -557,18 +557,18 @@ export default function ErrandServiceApp() {
               {selectedDate && !showSameDayMessage && (
                 <div className="space-y-3">
                   <label className="block text-sm font-medium text-slate-700">Select Time Option *</label>
-                  <label className="flex items-start gap-3 p-4 border-2 rounded-xl cursor-pointer hover:border-blue-400">
+                  <label className="flex items-start gap-3 p-4 border-2 rounded-xl cursor-pointer hover:border-purple-400">
                     <input type="radio" name="timeOption" value="anytime" checked={timeOption === 'anytime'} onChange={(e) => setTimeOption(e.target.value)} className="mt-1" />
                     <div className="flex-1">
                       <div className="font-medium">Anytime (10am - 4pm)</div>
-                      <p className="text-xs text-blue-600 mt-2 font-medium">Best Price, Most Flexibility</p>
+                      <p className="text-xs text-yellow-600 mt-2 font-medium">Best Price, Most Flexibility</p>
                     </div>
                   </label>
-                  <label className="flex items-start gap-3 p-4 border-2 rounded-xl cursor-pointer hover:border-blue-400">
+                  <label className="flex items-start gap-3 p-4 border-2 rounded-xl cursor-pointer hover:border-purple-400">
                     <input type="radio" name="timeOption" value="window" checked={timeOption === 'window'} onChange={(e) => setTimeOption(e.target.value)} className="mt-1" />
                     <div className="flex-1">
                       <div className="font-medium">2-Hour Window</div>
-                      <p className="text-xs text-blue-600 mt-2 font-medium">Moderate Price, Moderate Flexibility</p>
+                      <p className="text-xs text-yellow-600 mt-2 font-medium">Moderate Price, Moderate Flexibility</p>
                       {timeOption === 'window' && (
                         <select value={windowStartTime} onChange={(e) => setWindowStartTime(e.target.value)} className="mt-3 w-full px-3 py-2 border rounded-lg">
                           <option value="">Select start time...</option>
@@ -581,11 +581,11 @@ export default function ErrandServiceApp() {
                       )}
                     </div>
                   </label>
-                  <label className="flex items-start gap-3 p-4 border-2 rounded-xl cursor-pointer hover:border-blue-400">
+                  <label className="flex items-start gap-3 p-4 border-2 rounded-xl cursor-pointer hover:border-purple-400">
                     <input type="radio" name="timeOption" value="specific" checked={timeOption === 'specific'} onChange={(e) => setTimeOption(e.target.value)} className="mt-1" />
                     <div className="flex-1">
                       <div className="font-medium">Specific Time</div>
-                      <p className="text-xs text-green-600 mt-2 font-medium">When time is of the essence</p>
+                      <p className="text-xs text-yellow-600 mt-2 font-medium">When time is of the essence</p>
                       {timeOption === 'specific' && (
                         <input type="time" value={specificTime} onChange={(e) => setSpecificTime(e.target.value)} className="mt-3 w-full px-3 py-2 border rounded-lg" />
                       )}
@@ -605,7 +605,7 @@ export default function ErrandServiceApp() {
                       <option value="KW North Atlanta, 925 N Point Parkway, Alpharetta, GA 30005">KW North Atlanta - 925 N Point Parkway, Alpharetta, GA 30005</option>
                     </select>
                   </div>
-                  <input type="text" ref={pickupInputRef} value={pickupLocation} onChange={(e) => setPickupLocation(e.target.value)} placeholder="Enter pickup address" className="w-full px-4 py-3 border border-slate-300 rounded-xl focus:outline-none focus:ring-2 focus:ring-blue-500" />
+                  <input type="text" ref={pickupInputRef} value={pickupLocation} onChange={(e) => setPickupLocation(e.target.value)} placeholder="Enter pickup address" className="w-full px-4 py-3 border border-slate-300 rounded-xl focus:outline-none focus:ring-2 focus:ring-purple-500" />
                   </div>
                   <div><label className="block text-sm font-medium text-slate-700 mb-2"><div className="flex items-center gap-2"><div className="w-8 h-8 rounded-full bg-green-100 flex items-center justify-center"><MapPin className="w-4 h-4 text-green-600" /></div>Dropoff Location</div></label>
                   <div className="flex gap-2 mb-3">
@@ -614,7 +614,7 @@ export default function ErrandServiceApp() {
                       <option value="KW North Atlanta, 925 N Point Parkway, Alpharetta, GA 30005">KW North Atlanta - 925 N Point Parkway, Alpharetta, GA 30005</option>
                     </select>
                   </div>
-                  <input type="text" ref={dropoffInputRef} value={dropoffLocation} onChange={(e) => setDropoffLocation(e.target.value)} placeholder="Enter dropoff address" className="w-full px-4 py-3 border border-slate-300 rounded-xl focus:outline-none focus:ring-2 focus:ring-green-500" />
+                  <input type="text" ref={dropoffInputRef} value={dropoffLocation} onChange={(e) => setDropoffLocation(e.target.value)} placeholder="Enter dropoff address" className="w-full px-4 py-3 border border-slate-300 rounded-xl focus:outline-none focus:ring-2 focus:ring-purple-500" />
                   </div>
                 </>
               ) : serviceType === 'single-sign' || serviceType === 'multiple-signs' ? (
@@ -626,16 +626,16 @@ export default function ErrandServiceApp() {
                       <option value="KW North Atlanta, 925 N Point Parkway, Alpharetta, GA 30005">KW North Atlanta - 925 N Point Parkway, Alpharetta, GA 30005</option>
                     </select>
                   </div>
-                  <input type="text" ref={errandInputRef} value={signCurrentLocation} onChange={(e) => setSignCurrentLocation(e.target.value)} placeholder="Enter current sign location" className="w-full px-4 py-3 border border-slate-300 rounded-xl focus:outline-none focus:ring-2 focus:ring-orange-500" />
+                  <input type="text" ref={errandInputRef} value={signCurrentLocation} onChange={(e) => setSignCurrentLocation(e.target.value)} placeholder="Enter current sign location" className="w-full px-4 py-3 border border-slate-300 rounded-xl focus:outline-none focus:ring-2 focus:ring-purple-500" />
                   </div>
                   <div><label className="block text-sm font-medium text-slate-700 mb-2"><div className="flex items-center gap-2"><div className="w-8 h-8 rounded-full bg-orange-100 flex items-center justify-center"><MapPin className="w-4 h-4 text-orange-600" /></div>Where do you need {serviceType === 'single-sign' ? 'it' : 'them'} to be put out?</div></label>
                   <div className="flex gap-2 mb-3">
-                    <select value="" onChange={(e) => { if (e.target.value) { setSignDestinationLocation(e.target.value); setSignDestinationCoords({ lat: 34.0489, lon: -84.2938 }); e.target.value = ''; } }} className="flex-1 px-3 py-2 border border-slate-300 rounded-lg text-sm focus:outline-none focus:ring-2 focus:ring-orange-500">
+                    <select value="" onChange={(e) => { if (e.target.value) { setSignDestinationLocation(e.target.value); setSignDestinationCoords({ lat: 34.0489, lon: -84.2938 }); e.target.value = ''; } }} className="flex-1 px-3 py-2 border border-slate-300 rounded-lg text-sm focus:outline-none focus:ring-2 focus:ring-purple-500">
                       <option value="">Select preset location...</option>
                       <option value="KW North Atlanta, 925 N Point Parkway, Alpharetta, GA 30005">KW North Atlanta - 925 N Point Parkway, Alpharetta, GA 30005</option>
                     </select>
                   </div>
-                  <input type="text" ref={signDestinationInputRef} value={signDestinationLocation} onChange={(e) => setSignDestinationLocation(e.target.value)} placeholder="Enter destination address" className="w-full px-4 py-3 border border-slate-300 rounded-xl focus:outline-none focus:ring-2 focus:ring-orange-500" />
+                  <input type="text" ref={signDestinationInputRef} value={signDestinationLocation} onChange={(e) => setSignDestinationLocation(e.target.value)} placeholder="Enter destination address" className="w-full px-4 py-3 border border-slate-300 rounded-xl focus:outline-none focus:ring-2 focus:ring-purple-500" />
                   </div>
                 </>
               ) : (
@@ -646,7 +646,7 @@ export default function ErrandServiceApp() {
                     <option value="KW North Atlanta, 925 N Point Parkway, Alpharetta, GA 30005">KW North Atlanta - 925 N Point Parkway, Alpharetta, GA 30005</option>
                   </select>
                 </div>
-                <input type="text" ref={errandInputRef} value={errandLocation} onChange={(e) => setErrandLocation(e.target.value)} placeholder="Enter errand address" className="w-full px-4 py-3 border border-slate-300 rounded-xl focus:outline-none focus:ring-2 focus:ring-green-500" />
+                <input type="text" ref={errandInputRef} value={errandLocation} onChange={(e) => setErrandLocation(e.target.value)} placeholder="Enter errand address" className="w-full px-4 py-3 border border-slate-300 rounded-xl focus:outline-none focus:ring-2 focus:ring-purple-500" />
                 </div>
               )}
             </div>
@@ -667,7 +667,7 @@ export default function ErrandServiceApp() {
               </div>
             )}
 
-            <button onClick={handleContinue} disabled={!isLocationFormValid()} className={`w-full py-4 rounded-xl font-semibold text-white ${isLocationFormValid() ? 'bg-blue-600 hover:bg-blue-700' : 'bg-slate-300 cursor-not-allowed'}`}>Continue</button>
+            <button onClick={handleContinue} disabled={!isLocationFormValid()} className={`w-full py-4 rounded-xl font-semibold text-white ${isLocationFormValid() ? 'bg-purple-600 hover:bg-purple-700' : 'bg-slate-300 cursor-not-allowed'}`}>Continue</button>
           </div>
         )}
 
@@ -709,7 +709,7 @@ export default function ErrandServiceApp() {
             </div>
             <div className="bg-white rounded-2xl p-6 shadow-md">
               <label className="block text-sm font-medium text-slate-700 mb-2">Task Description *</label>
-              <textarea value={jobDescription} onChange={(e) => setJobDescription(e.target.value)} placeholder="Describe what needs to be done..." rows="6" className="w-full px-4 py-3 border rounded-xl focus:outline-none focus:ring-2 focus:ring-blue-500 resize-none" />
+              <textarea value={jobDescription} onChange={(e) => setJobDescription(e.target.value)} placeholder="Describe what needs to be done..." rows="6" className="w-full px-4 py-3 border rounded-xl focus:outline-none focus:ring-2 focus:ring-purple-500 resize-none" />
               <p className="text-xs text-slate-500 mt-2">Include instructions, item descriptions, contact info, access codes, etc.</p>
             </div>
             <div className="bg-white rounded-2xl p-6 shadow-md">
@@ -724,13 +724,13 @@ export default function ErrandServiceApp() {
                   <span>8 hours</span>
                 </div>
                 {calculateMinimumTime() > 0.5 && (
-                  <div className="bg-blue-50 border border-blue-200 rounded-lg p-3 text-xs text-blue-700">
+                  <div className="bg-purple-50 border border-purple-200 rounded-lg p-3 text-xs text-purple-700">
                     <strong>Note:</strong> Minimum time required based on mileage{(serviceType === 'single-sign' || serviceType === 'multiple-signs') ? ' and sign quantity' : ''} ({calculateTotalMileage().toFixed(1)} miles total{(serviceType === 'single-sign' || serviceType === 'multiple-signs') ? ` + ${numberOfSigns} ${numberOfSigns === 1 ? 'sign' : 'signs'}` : ''})
                   </div>
                 )}
               </div>
             </div>
-            <button onClick={handleJobDetailsContinue} disabled={!jobDescription.trim() || !userEstimatedHours} className={`w-full py-4 rounded-xl font-semibold text-white ${jobDescription.trim() && userEstimatedHours ? 'bg-blue-600 hover:bg-blue-700' : 'bg-slate-300 cursor-not-allowed'}`}>Continue to Pricing</button>
+            <button onClick={handleJobDetailsContinue} disabled={!jobDescription.trim() || !userEstimatedHours} className={`w-full py-4 rounded-xl font-semibold text-white ${jobDescription.trim() && userEstimatedHours ? 'bg-purple-600 hover:bg-purple-700' : 'bg-slate-300 cursor-not-allowed'}`}>Continue to Pricing</button>
           </div>
         )}
 
@@ -753,12 +753,12 @@ export default function ErrandServiceApp() {
                 {(() => {
                   const pricing = calculatePricing();
                   return (
-                    <div className="bg-gradient-to-br from-blue-50 to-blue-100 border-2 border-blue-200 rounded-2xl p-6 shadow-lg">
+                    <div className="bg-gradient-to-br from-purple-50 to-purple-100 border-2 border-purple-300 rounded-2xl p-6 shadow-lg">
                       <div className="flex items-center justify-between mb-4">
-                        <div className="flex items-center gap-2"><DollarSign className="w-6 h-6 text-blue-600" /><h3 className="text-xl font-bold text-slate-900">Total Price</h3></div>
-                        {timeOption !== 'anytime' && (<button onClick={handleDowngradeTiming} className="text-xs text-blue-600 hover:text-blue-800 underline">Save money with extra flexibility?</button>)}
+                        <div className="flex items-center gap-2"><DollarSign className="w-6 h-6 text-purple-600" /><h3 className="text-xl font-bold text-slate-900">Total Price</h3></div>
+                        {timeOption !== 'anytime' && (<button onClick={handleDowngradeTiming} className="text-xs text-purple-600 hover:text-purple-800 underline">Save money with extra flexibility?</button>)}
                       </div>
-                      <div className="text-5xl font-bold text-blue-600">${pricing.total.toFixed(2)}</div>
+                      <div className="text-5xl font-bold text-purple-600">${pricing.total.toFixed(2)}</div>
                       <div className="bg-white/60 rounded-lg p-3 mt-4 text-xs text-slate-700">
                         <p>We will contact you for billing once your order is confirmed, or if you are an existing customer with a card on file, we will bill the card once your errand is confirmed. You will not be charged until you speak with a member of the team to confirm the details of your request.</p>
                       </div>
@@ -768,11 +768,11 @@ export default function ErrandServiceApp() {
                 <div className="bg-white rounded-2xl p-6 shadow-md space-y-4">
                   <h3 className="text-lg font-semibold text-slate-900">Contact Information</h3>
                   <p className="text-sm text-slate-600">We'll use this to confirm your request</p>
-                  <div><label className="block text-sm font-medium text-slate-700 mb-2">Full Name *</label><input type="text" value={customerName} onChange={(e) => setCustomerName(e.target.value)} placeholder="John Smith" className="w-full px-4 py-3 border border-slate-300 rounded-xl focus:outline-none focus:ring-2 focus:ring-blue-500" /></div>
-                  <div><label className="block text-sm font-medium text-slate-700 mb-2">Phone Number *</label><input type="tel" value={customerPhone} onChange={(e) => setCustomerPhone(e.target.value)} placeholder="(555) 123-4567" className="w-full px-4 py-3 border border-slate-300 rounded-xl focus:outline-none focus:ring-2 focus:ring-blue-500" /></div>
-                  <div><label className="block text-sm font-medium text-slate-700 mb-2">Email Address *</label><input type="email" value={customerEmail} onChange={(e) => setCustomerEmail(e.target.value)} placeholder="john@example.com" className="w-full px-4 py-3 border border-slate-300 rounded-xl focus:outline-none focus:ring-2 focus:ring-blue-500" /></div>
+                  <div><label className="block text-sm font-medium text-slate-700 mb-2">Full Name *</label><input type="text" value={customerName} onChange={(e) => setCustomerName(e.target.value)} placeholder="John Smith" className="w-full px-4 py-3 border border-slate-300 rounded-xl focus:outline-none focus:ring-2 focus:ring-purple-500" /></div>
+                  <div><label className="block text-sm font-medium text-slate-700 mb-2">Phone Number *</label><input type="tel" value={customerPhone} onChange={(e) => setCustomerPhone(e.target.value)} placeholder="(555) 123-4567" className="w-full px-4 py-3 border border-slate-300 rounded-xl focus:outline-none focus:ring-2 focus:ring-purple-500" /></div>
+                  <div><label className="block text-sm font-medium text-slate-700 mb-2">Email Address *</label><input type="email" value={customerEmail} onChange={(e) => setCustomerEmail(e.target.value)} placeholder="john@example.com" className="w-full px-4 py-3 border border-slate-300 rounded-xl focus:outline-none focus:ring-2 focus:ring-purple-500" /></div>
                 </div>
-                <button onClick={handleFormspreeSubmit} disabled={!customerName.trim() || !customerPhone.trim() || !customerEmail.trim() || isSubmitting} className={`w-full py-4 rounded-xl font-semibold text-white transition-all ${customerName.trim() && customerPhone.trim() && customerEmail.trim() && !isSubmitting ? 'bg-gradient-to-r from-green-600 to-green-700 hover:from-green-700 hover:to-green-800' : 'bg-slate-300 cursor-not-allowed'}`}>{isSubmitting ? 'Submitting...' : 'Accept Price & Submit Request'}</button>
+                <button onClick={handleFormspreeSubmit} disabled={!customerName.trim() || !customerPhone.trim() || !customerEmail.trim() || isSubmitting} className={`w-full py-4 rounded-xl font-semibold text-white transition-all ${customerName.trim() && customerPhone.trim() && customerEmail.trim() && !isSubmitting ? 'bg-gradient-to-r from-purple-600 to-yellow-500 hover:from-purple-700 hover:to-yellow-600' : 'bg-slate-300 cursor-not-allowed'}`}>{isSubmitting ? 'Submitting...' : 'Accept Price & Submit Request'}</button>
               </>
             ) : (
               <div className="space-y-6">
@@ -785,7 +785,7 @@ export default function ErrandServiceApp() {
                   </div>
                   <p className="text-sm text-green-700 mt-6">Thank you for choosing Agent Assist!</p>
                 </div>
-                <button onClick={() => window.location.reload()} className="w-full py-4 rounded-xl font-semibold text-white bg-blue-600 hover:bg-blue-700">Submit Another Request</button>
+                <button onClick={() => window.location.reload()} className="w-full py-4 rounded-xl font-semibold text-white bg-purple-600 hover:bg-purple-700">Submit Another Request</button>
               </div>
             )}
           </div>
