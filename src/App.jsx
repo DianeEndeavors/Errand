@@ -739,21 +739,7 @@ export default function ErrandServiceApp() {
                         <div className="flex items-center gap-2"><DollarSign className="w-6 h-6 text-blue-600" /><h3 className="text-xl font-bold text-slate-900">Total Price</h3></div>
                         {timeOption !== 'anytime' && (<button onClick={handleDowngradeTiming} className="text-xs text-blue-600 hover:text-blue-800 underline">Save money with extra flexibility?</button>)}
                       </div>
-                      <div className="text-5xl font-bold text-blue-600 mb-6">${pricing.total.toFixed(2)}</div>
-                      <div className="bg-white/70 rounded-xl p-4 space-y-2 text-sm">
-                        <div className="font-semibold text-slate-700 mb-2">Price Breakdown</div>
-                        <div className="flex justify-between"><span className="text-slate-600">Base Price:</span><span className="font-medium">${pricing.basePrice.toFixed(2)}</span></div>
-                        <div className="flex justify-between"><span className="text-slate-600">Mileage ({pricing.distance.toFixed(1)} mi @ $1.50/mi):</span><span className="font-medium">${pricing.mileageCost.toFixed(2)}</span></div>
-                        <div className="flex justify-between"><span className="text-slate-600">Additional Time ({Math.max(0, userEstimatedHours - 1).toFixed(1)} hrs @ $60/hr):</span><span className="font-medium">${pricing.timeCost.toFixed(2)}</span></div>
-                        {pricing.signCost > 0 && (<div className="flex justify-between"><span className="text-slate-600">Additional Signs ({numberOfSigns - 1} signs @ $5/sign):</span><span className="font-medium">${pricing.signCost.toFixed(2)}</span></div>)}
-                        <div className="border-t border-slate-300 pt-2 mt-2">
-                          <div className="flex justify-between"><span className="text-slate-600">Subtotal:</span><span className="font-medium">${pricing.subtotal.toFixed(2)}</span></div>
-                        </div>
-                        <div className="flex justify-between"><span className="text-slate-600">Service Fee ({pricing.markupPercent}%):</span><span className="font-medium">${pricing.markupAmount.toFixed(2)}</span></div>
-                        <div className="border-t-2 border-blue-300 pt-2 mt-2">
-                          <div className="flex justify-between text-base"><span className="font-semibold text-slate-900">Total:</span><span className="font-bold text-blue-600">${pricing.total.toFixed(2)}</span></div>
-                        </div>
-                      </div>
+                      <div className="text-5xl font-bold text-blue-600">${pricing.total.toFixed(2)}</div>
                     </div>
                   );
                 })()}
