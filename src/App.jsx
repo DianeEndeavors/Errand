@@ -117,6 +117,7 @@ export default function ErrandServiceApp() {
         setUserEstimatedHours(minTime);
       }
     }
+    // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [pickupCoords, dropoffCoords, errandCoords, signCurrentCoords, signDestinationCoords, serviceType]);
 
   const calculatePricing = () => {
