@@ -73,8 +73,97 @@ export default function ErrandServiceApp() {
   const [isSubmitting, setIsSubmitting] = useState(false);
   const [showSameDayMessage, setShowSameDayMessage] = useState(false);
   const [numberOfSigns, setNumberOfSigns] = useState(3);
+  const [googleLoaded, setGoogleLoaded] = useState(false);
+
+  const pickupInputRef = useRef(null);
+  const dropoffInputRef = useRef(null);
+  const errandInputRef = useRef(null);
+  const googleMapsLoaded = useRef(false);
 
   const BASE_ADDRESS_COORDS = { lat: 34.0489, lon: -84.2938 };
+
+  // Load Google Maps script
+  useEffect(() => {
+    if (!googleMapsLoaded.current) {
+      const script = document.createElement('script');
+      script.src = 'https://maps.googleapis.com/maps/api/js?key=AIzaSyD-2PR1dJB_yw6ERs4719TZjXBe91U0Btc&libraries=places';
+      script.async = true;
+      script.defer = true;
+      script.onload = () => {
+        googleMapsLoaded.current = true;
+        setGoogleLoaded(true);
+      };
+      document.head.appendChild(script);
+    } else if (window.google && window.google.maps) {
+      setGoogleLoaded(true);
+    }
+  }, []);
+
+  // Setup Google Places Autocomplete for pickup
+  useEffect(() => {
+    if (googleLoaded && pickupInputRef.current && window.google && window.google.maps && step === 'enter-locations' && serviceType === 'delivery') {
+      const autocomplete = new window.google.maps.places.Autocomplete(pickupInputRef.current, {
+        componentRestrictions: { country: 'us' },
+        fields: ['address_components', 'geometry', 'formatted_address', 'name'],
+        types: ['address']
+      });
+
+      autocomplete.addListener('place_changed', () => {
+        const place = autocomplete.getPlace();
+        if (place.geometry) {
+          setPickupLocation(place.formatted_address || place.name);
+          setPickupCoords({
+            lat: place.geometry.location.lat(),
+            lon: place.geometry.location.lng()
+          });
+        }
+      });
+    }
+  }, [googleLoaded, step, serviceType]);
+
+  // Setup Google Places Autocomplete for dropoff
+  useEffect(() => {
+    if (googleLoaded && dropoffInputRef.current && window.google && window.google.maps && step === 'enter-locations' && serviceType === 'delivery') {
+      const autocomplete = new window.google.maps.places.Autocomplete(dropoffInputRef.current, {
+        componentRestrictions: { country: 'us' },
+        fields: ['address_components', 'geometry', 'formatted_address', 'name'],
+        types: ['address']
+      });
+
+      autocomplete.addListener('place_changed', () => {
+        const place = autocomplete.getPlace();
+        if (place.geometry) {
+          setDropoffLocation(place.formatted_address || place.name);
+          setDropoffCoords({
+            lat: place.geometry.location.lat(),
+            lon: place.geometry.location.lng()
+          });
+        }
+      });
+    }
+  }, [googleLoaded, step, serviceType]);
+
+  // Setup Google Places Autocomplete for errand
+  useEffect(() => {
+    if (googleLoaded && errandInputRef.current && window.google && window.google.maps && step === 'enter-locations' && serviceType === 'errand') {
+      const autocomplete = new window.google.maps.places.Autocomplete(errandInputRef.current, {
+        componentRestrictions: { country: 'us' },
+        fields: ['address_components', 'geometry', 'formatted_address', 'name'],
+        types: ['address']
+      });
+
+      autocomplete.addListener('place_changed', () => {
+        const place = autocomplete.getPlace();
+        if (place.geometry) {
+          setErrandLocation(place.formatted_address || place.name);
+          setErrandCoords({
+            lat: place.geometry.location.lat(),
+            lon: place.geometry.location.lng()
+          });
+        }
+      });
+    }
+  }, [googleLoaded, step, serviceType]);
 
   const calculateDistance = (lat1, lon1, lat2, lon2) => {
     const R = 3959;
@@ -450,7 +539,7 @@ export default function ErrandServiceApp() {
                       <option value="KW North Atlanta, 925 N Point Parkway, Alpharetta, GA 30005">KW North Atlanta - 925 N Point Parkway, Alpharetta, GA 30005</option>
                     </select>
                   </div>
-                  <input type="text" value={pickupLocation} onChange={(e) => setPickupLocation(e.target.value)} placeholder="Enter pickup address" className="w-full px-4 py-3 border border-slate-300 rounded-xl focus:outline-none focus:ring-2 focus:ring-blue-500" />
+                  <input type="text" ref={pickupInputRef} value={pickupLocation} onChange={(e) => setPickupLocation(e.target.value)} placeholder="Enter pickup address" className="w-full px-4 py-3 border border-slate-300 rounded-xl focus:outline-none focus:ring-2 focus:ring-blue-500" />
                   </div>
                   <div><label className="block text-sm font-medium text-slate-700 mb-2"><div className="flex items-center gap-2"><div className="w-8 h-8 rounded-full bg-green-100 flex items-center justify-center"><MapPin className="w-4 h-4 text-green-600" /></div>Dropoff Location</div></label>
                   <div className="flex gap-2 mb-3">
@@ -459,7 +548,7 @@ export default function ErrandServiceApp() {
                       <option value="KW North Atlanta, 925 N Point Parkway, Alpharetta, GA 30005">KW North Atlanta - 925 N Point Parkway, Alpharetta, GA 30005</option>
                     </select>
                   </div>
-                  <input type="text" value={dropoffLocation} onChange={(e) => setDropoffLocation(e.target.value)} placeholder="Enter dropoff address" className="w-full px-4 py-3 border border-slate-300 rounded-xl focus:outline-none focus:ring-2 focus:ring-green-500" />
+                  <input type="text" ref={dropoffInputRef} value={dropoffLocation} onChange={(e) => setDropoffLocation(e.target.value)} placeholder="Enter dropoff address" className="w-full px-4 py-3 border border-slate-300 rounded-xl focus:outline-none focus:ring-2 focus:ring-green-500" />
                   </div>
                 </>
               ) : serviceType === 'single-sign' || serviceType === 'multiple-signs' ? (
@@ -491,7 +580,7 @@ export default function ErrandServiceApp() {
                     <option value="KW North Atlanta, 925 N Point Parkway, Alpharetta, GA 30005">KW North Atlanta - 925 N Point Parkway, Alpharetta, GA 30005</option>
                   </select>
                 </div>
-                <input type="text" value={errandLocation} onChange={(e) => setErrandLocation(e.target.value)} placeholder="Enter errand address" className="w-full px-4 py-3 border border-slate-300 rounded-xl focus:outline-none focus:ring-2 focus:ring-green-500" />
+                <input type="text" ref={errandInputRef} value={errandLocation} onChange={(e) => setErrandLocation(e.target.value)} placeholder="Enter errand address" className="w-full px-4 py-3 border border-slate-300 rounded-xl focus:outline-none focus:ring-2 focus:ring-green-500" />
                 </div>
               )}
             </div>
