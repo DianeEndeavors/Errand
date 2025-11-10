@@ -78,7 +78,6 @@ export default function ErrandServiceApp() {
   const pickupInputRef = useRef(null);
   const dropoffInputRef = useRef(null);
   const errandInputRef = useRef(null);
-  const signCurrentInputRef = useRef(null);
   const signDestinationInputRef = useRef(null);
   const googleMapsLoaded = useRef(false);
 
